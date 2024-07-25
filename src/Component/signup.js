@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
+import privateComponent from './privateComponent';
 
 const SignUp = () => {
 
@@ -19,12 +20,12 @@ const SignUp = () => {
             },
         })
    
-        result = await result.json
+        result = await result.json();
         console.warn(result);
-        localStorage.setItem('user', JSON.stringify(result));
-        if(result){
-          navigate('/');
-        }
+        localStorage.setItem('users', JSON.stringify(result));
+        // if(result){
+        //   navigate('/');
+        // }
     }
 
 
