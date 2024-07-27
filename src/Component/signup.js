@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-import privateComponent from './privateComponent';
 
 const SignUp = () => {
 
@@ -9,6 +8,13 @@ const SignUp = () => {
     const [password,setPassword] = useState('');
     const [email,setEmail] = useState('');
     const navigate = useNavigate();
+
+    useEffect(()=>{
+      const auth = localStorage.getItem('users');
+      if(auth){
+        navigate('/');
+      }
+    })
 
     const CollectData = async () =>{
         console.log(name,password,email);
@@ -23,9 +29,9 @@ const SignUp = () => {
         result = await result.json();
         console.warn(result);
         localStorage.setItem('users', JSON.stringify(result));
-        // if(result){
-        //   navigate('/');
-        // }
+        if(result){
+          navigate('/');
+        }
     }
 
 
